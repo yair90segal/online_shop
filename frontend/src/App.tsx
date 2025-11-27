@@ -1,11 +1,9 @@
-import './App.css'
-
-function App() {
+const App = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-      Hello World
-    </>
-  )
-}
+      <>
+        {children}
+      </>
+  );
+};
 
-export default App
+export default App;

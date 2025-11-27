@@ -2,12 +2,14 @@ import { Outlet } from "react-router-dom";
 import { Navbar } from "../components/Navbar/Navbar";
 
 const MainLayout = () => {
-    return (
-        <>
-            <Navbar isAdmin={false}/>
-            <Outlet />
-        </>
-    );
-}
+  return (
+    <div style={{ minHeight: "100vh" }}>
+      <Navbar isAdmin={false} />
+      <div style={{ paddingTop: "64px" }}>
+        <Outlet />
+      </div>
+    </div>
+  );
+};
 
 export default MainLayout;

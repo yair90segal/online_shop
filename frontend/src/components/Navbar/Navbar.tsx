@@ -60,9 +60,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const Navbar: FC<NavbarProps> = ({ isAdmin }) => {
   return (
     <>
-      {isAdmin} ? (<></>)
+        {isAdmin ? (<></>) : (<></>)}
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton
               size="large"
