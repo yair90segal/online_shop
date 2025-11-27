@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { AccountCircle, ShoppingBag } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 interface NavbarProps {
   isAdmin: boolean;
@@ -88,6 +90,24 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin }) => {
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
+            <IconButton
+              component={Link}
+              to="/account" // 👈 or /account, /login, etc.
+              size="large"
+              color="inherit"
+              sx={{ mr: 2 }}
+            >
+              <AccountCircle />
+            </IconButton>
+            <IconButton
+              component={Link}
+              to="/cart" // 👈 or /account, /login, etc.
+              size="large"
+              color="inherit"
+              sx={{ mr: 2 }}
+            >
+              <ShoppingBag />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
