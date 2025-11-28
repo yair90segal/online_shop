@@ -1,47 +1,35 @@
 import type { FC } from "react";
-import { Categories } from "../../types/categories";
-import Card, { type CardProps } from "@mui/material/Card";
+import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
+import type { ProductDetails } from "../../types/productDetails";
 
-interface ProductCardProps extends CardProps {
-  imageUrl: string;
-  productId: string;
-  productName: string;
-  author: string;
-  category: Categories;
-  description: string;
-  price: number;
+interface ProductCardProps {
+  product: ProductDetails
 }
 
 const ProductCard: FC<ProductCardProps> = ({
-  imageUrl,
-  productId,
-  productName,
-  author,
-  category,
-  description,
-  price,
+  product
 }) => {
   return (
-    <Card id={productId} sx={{ maxWidth: 345 }}>
-      <CardMedia sx={{ height: 140 }} image={imageUrl} title="green iguana" />
+    <Card id={product.productId} sx={{ maxWidth: 345 }}>
+      <CardMedia sx={{ height: 140 }} image={product.imageUrl} title="green iguana" />
       <CardContent>
         <Typography gutterBottom variant="h3" component="div">
-          {productName}
+          {product.productName}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          {author}
+          {product.author}
         </Typography>
         <Typography gutterBottom variant="h6" component="div">
-          {category}
+          {product.category}
         </Typography>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {description}
+          {product.description}
         </Typography>
       </CardContent>
       <CardActions>
@@ -53,9 +41,7 @@ const ProductCard: FC<ProductCardProps> = ({
             borderRadius: 1,
             fontWeight: 500,
             fontSize: "0.875rem",
-            cursor: "pointer",
-            border: "1px solid", // so it looks button-like
-            borderColor: "primary.main",
+            border: "none",
             color: "primary.main",
             bgcolor: "transparent",
             display: "flex",
@@ -65,7 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({
             lineHeight: 1.75,
           }}
         >
-          {price}
+          {product.price}
         </Box>
         <Button size="small" variant="contained">Add to Cart</Button>
       </CardActions>
