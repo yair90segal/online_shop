@@ -1,4 +1,4 @@
-import ProductCard from "../components/ProductCard/ProductCard";
+import { CardContainer } from "../components/CardContainer/CardContainer";
 import { Categories } from "../types/categories";
 import type { ProductDetails } from "../types/productDetails";
 
@@ -14,7 +14,8 @@ const Home = () => {
   };
   return (
     <>
-      <ProductCard product={product} />
+        <CardContainer products={[product, product, product, product, product, product,
+             product, product, product, product, product, product]} />
     </>
   );
 };

@@ -9,10 +9,12 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle, ShoppingBag } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface NavbarProps {
   isAdmin: boolean;
+  search: string;
+  setSearch: (s: string) => void;
 }
 
 const Search = styled("div")(({ theme }) => ({
@@ -57,10 +59,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const Navbar: FC<NavbarProps> = ({ isAdmin }) => {
+export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
+  const navigate = useNavigate();
+
   return (
     <>
-        {isAdmin ? (<></>) : (<></>)}
+      {isAdmin ? <></> : <></>}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="fixed">
           <Toolbar>
@@ -88,11 +92,21 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin }) => {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    const q = search.trim();
+                    if (q.length === 0) return;
+
+                    navigate(`/search?query=${encodeURIComponent(q)}`);
+                  }
+                }}
               />
             </Search>
             <IconButton
               component={Link}
-              to="/account" // 👈 or /account, /login, etc.
+              to="/account"
               size="large"
               color="inherit"
               sx={{ mr: 2 }}
@@ -101,7 +115,7 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin }) => {
             </IconButton>
             <IconButton
               component={Link}
-              to="/cart" // 👈 or /account, /login, etc.
+              to="/cart"
               size="large"
               color="inherit"
               sx={{ mr: 2 }}
