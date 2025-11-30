@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import datasource from './datasource';
 import { ConfigModule } from '@nestjs/config';
 
+// Don't forget to initialize .env file
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
