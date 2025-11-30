@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { ProductDetails } from "../types/productDetails";
 import { ProductContext } from "./ProductContext";
 
-export function ProductProvider({ children }: { children: ReactNode }) {
+export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
 
   useEffect(() => {
