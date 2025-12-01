@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateUserLocalDto } from './dto/createUserLocal.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
@@ -16,38 +16,23 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  async createUser(
-    createUserDto: CreateUserLocalDto,
-  ): Promise<CreateUserLocalDto> {
+  async createUser(createUserDto: CreateUserLocalDto) {
     const newUser = new UserEntity();
     Object.assign(newUser, createUserDto);
-
-    const userByEmail = await this.findByEmail(newUser.email);
-    const userByUsername = await this.findByUsername(newUser.username);
-
-    if (userByEmail || userByUsername) {
-      throw new HttpException(
-        'Email or username already exist',
-        HttpStatus.UNPROCESSABLE_ENTITY,
-      );
-    }
 
     return await this.userRepository.save(newUser);
   }
 
-  async findByUsername(username: string) {
+  async findByUsernameOrEmail(identifier: string) {
     return await this.userRepository.findOne({
-      where: {
-        username: username,
-      },
-    });
-  }
-
-  async findByEmail(email: string) {
-    return await this.userRepository.findOne({
-      where: {
-        email: email,
-      },
+      where: [
+        {
+          username: identifier,
+        },
+        {
+          email: identifier,
+        },
+      ],
     });
   }
 }
