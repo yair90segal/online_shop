@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderEntity } from 'src/orders/order.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'products' })
 export class ProductEntity {
@@ -13,4 +14,7 @@ export class ProductEntity {
 
   @Column()
   s3Url: string;
+
+  @ManyToMany(() => OrderEntity, (order) => order.products)
+  orders: OrderEntity[];
 }
