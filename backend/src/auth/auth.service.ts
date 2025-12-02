@@ -6,6 +6,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcryptjs';
 import { CreateUserLocalDto } from 'src/user/dto/createUserLocal.dto';
+import { UserEntity } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 
 @Injectable()
@@ -24,16 +25,7 @@ export class AuthService {
 
     const user = await this.userService.createUser(dto);
 
-    // Can create function for this:
-    const token = await this.jwtService.signAsync({
-      sub: user.id,
-      role: user.role,
-    });
-
-    return {
-      userId: user.id,
-      token,
-    };
+    return await this.buildResponse(user);
   }
 
   async login(identifier: string, pass: string) {
@@ -45,6 +37,10 @@ export class AuthService {
     if (!passwordMatch)
       throw new UnauthorizedException('Invalid username or password');
 
+    return await this.buildResponse(user);
+  }
+
+  async buildResponse(user: UserEntity) {
     const token = await this.jwtService.signAsync({
       sub: user.id,
       role: user.role,
