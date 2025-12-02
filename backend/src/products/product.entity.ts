@@ -13,7 +13,7 @@ export class ProductEntity {
   description: string;
 
   @Column()
-  s3Url: string;
+  cloudinaryUrl: string;
 
   @ManyToMany(() => OrderEntity, (order) => order.products)
   orders: OrderEntity[];

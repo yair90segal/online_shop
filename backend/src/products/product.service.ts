@@ -13,4 +13,8 @@ export class ProductService {
   async getAllProducts() {
     return await this.productRepository.find();
   }
+
+  async createProduct() {}
+
+  async removeProduct() {}
 }
