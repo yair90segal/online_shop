@@ -4,7 +4,7 @@ import * as bcrypt from 'bcryptjs';
 
 @Entity({ name: 'users' })
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
   // Loval auth fields:

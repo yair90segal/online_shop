@@ -10,7 +10,7 @@ import {
 @Entity('orders')
 export class OrderEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   orderDate: Date;
