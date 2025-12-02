@@ -17,6 +17,7 @@ export class AuthService {
   ) {}
 
   async registerLocal(dto: CreateUserLocalDto) {
+    console.log(dto);
     const byUsername = await this.userService.findByUsernameOrEmail(
       dto.username,
     );
@@ -25,7 +26,8 @@ export class AuthService {
 
     const user = await this.userService.createUser(dto);
 
-    return await this.buildResponse(user);
+    const response = await this.buildResponse(user);
+    return response;
   }
 
   async login(identifier: string, pass: string) {

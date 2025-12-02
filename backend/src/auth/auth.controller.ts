@@ -7,10 +7,11 @@ export class AuthController {
   constructor(private auth: AuthService) {}
 
   @Post('register')
-  async registerLocal(@Body() dto: CreateUserLocalDto) {
+  async registerLocal(@Body('user') dto: CreateUserLocalDto) {
     return await this.auth.registerLocal(dto);
   }
 
+  @Post('logini')
   async login(@Body() body: { identifier: string; password: string }) {
     return this.auth.login(body.identifier, body.password);
   }
