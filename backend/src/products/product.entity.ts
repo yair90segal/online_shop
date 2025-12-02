@@ -10,6 +10,9 @@ export class ProductEntity {
   productName: string;
 
   @Column()
+  author: string;
+
+  @Column()
   description: string;
 
   @Column()

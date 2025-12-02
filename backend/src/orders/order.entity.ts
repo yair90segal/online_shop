@@ -1,9 +1,11 @@
 import { ProductEntity } from 'src/products/product.entity';
+import { UserEntity } from 'src/user/user.entity';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -31,4 +33,7 @@ export class OrderEntity {
     },
   })
   products: ProductEntity[];
+
+  @ManyToOne(() => UserEntity, (user) => user.orders)
+  user: UserEntity;
 }
