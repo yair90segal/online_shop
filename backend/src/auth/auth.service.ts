@@ -48,7 +48,7 @@ export class AuthService {
 
     return {
       userId: user.id,
-      token,
+      accessToken: token,
     };
   }
 }
