@@ -11,7 +11,7 @@ export class AuthController {
     return await this.auth.registerLocal(dto);
   }
 
-  @Post('logini')
+  @Post('login')
   async login(@Body() body: { identifier: string; password: string }) {
     return this.auth.login(body.identifier, body.password);
   }
