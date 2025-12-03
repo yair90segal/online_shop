@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ProductModule } from './products/product.module';
 
 // Don't forget to initialize .env file
 
@@ -31,6 +32,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     UserModule,
     AuthModule,
     CloudinaryModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
