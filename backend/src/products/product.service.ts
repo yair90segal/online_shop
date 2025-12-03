@@ -35,7 +35,15 @@ export class ProductService {
     return await this.productRepository.save(pruduct);
   }
 
-  async removeProduct() {}
+  async removeProduct(id: string) {
+    const product = await this.productRepository.findOne({ where: { id } });
+
+    if (!product) throw new BadRequestException('Product not found');
+
+    await this.productRepository.remove(product);
+
+    return { message: 'product deleted successfully' };
+  }
 
   isUploadApiResponse(
     upload: UploadApiResponse | UploadApiErrorResponse,
