@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle, ShoppingBag } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
+import { useProduct } from "../../contexts/ProductContext/useProduct";
 
 interface NavbarProps {
   isAdmin: boolean;
@@ -62,6 +63,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
   const navigate = useNavigate();
 
+  const { filterProducts } = useProduct();
+
   return (
     <>
       {isAdmin ? <></> : <></>}
@@ -83,7 +86,7 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
               component="div"
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             >
-              MUI
+              The Book Buffet
             </Typography>
             <Search>
               <SearchIconWrapper>
@@ -99,7 +102,8 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
                     const q = search.trim();
                     if (q.length === 0) return;
 
-                    navigate(`/search?query=${encodeURIComponent(q)}`);
+                    filterProducts(q);
+                    navigate(`/search`);
                   }
                 }}
               />

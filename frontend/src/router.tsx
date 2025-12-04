@@ -6,6 +6,7 @@ import MainLayout from "./layouts/MainLayout";
 import Account from "./pages/Account";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import SearchResults from "./pages/SearchResults";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
         children: [
             {path: "/", element: <Home />},
             {path: "/account", element: <Account />},
-            {path: "/cart", element: <Cart />}
+            {path: "/cart", element: <Cart />},
+            {path: "/search", element: <SearchResults />},
         ]
     }
 ])

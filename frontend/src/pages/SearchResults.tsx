@@ -1,31 +1,13 @@
-import { useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard/ProductCard";
 import type { ProductDetails } from "../types/productDetails";
 import { useProduct } from "../contexts/ProductContext/useProduct";
 
 const SearchResults = () => {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get("query")?.trim() ?? "";
-  const { products } = useProduct();
-  // product need to be context
-  // add result variable, reset to empty list. in the use effect we will assign value of filtered product list
-
-  const results = useMemo(() => {
-    if (!query) {
-      return products;
-    }
-
-    return products.filter(
-      (product) =>
-        product.productName.toLowerCase().includes(query.toLowerCase()) ||
-        product.author.toLowerCase().includes(query.toLowerCase())
-    );
-  }, [query, products]);
+  const { filteredProducts } = useProduct();
 
   return (
     <div>
-      {results.map((product: ProductDetails) => (
+      {filteredProducts.map((product: ProductDetails) => (
         <ProductCard key={product.productId} product={product} />
       ))}
     </div>
