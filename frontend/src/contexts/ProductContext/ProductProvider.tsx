@@ -9,6 +9,9 @@ export const ProductProvider: FC<{
   children: JSX.Element[] | JSX.Element;
 }> = ({ children }) => {
   const [products, setProducts] = useState<ProductDetails[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<ProductDetails[]>(
+    []
+  );
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -42,8 +45,20 @@ export const ProductProvider: FC<{
     );
   };
 
+  const filterProducts = (query: string) => {
+    if (!query) setFilteredProducts(products);
+
+    const filtered = products.filter(
+      (product) =>
+        product.productName.toLowerCase().includes(query.toLowerCase()) ||
+        product.author.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setFilteredProducts(filtered);
+  };
+
   return (
-    <ProductContext.Provider value={{ products, addProduct, removeProduct }}>
+    <ProductContext.Provider value={{ products, filteredProducts ,addProduct, removeProduct, filterProducts }}>
       {children}
     </ProductContext.Provider>
   );
