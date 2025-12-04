@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../components/Navbar/Navbar";
 import { useState } from "react";
-import { ProductProvider } from "../contexts/ProductProvider";
-import { CartProvider } from "../contexts/CartProvider";
+import { CartProvider } from "../contexts/CartContext/CartProvider";
+import { ProductProvider } from "../contexts/ProductContext/ProductProvider";
 
 const MainLayout = () => {
   const [search, setSearch] = useState("");

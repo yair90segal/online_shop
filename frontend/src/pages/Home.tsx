@@ -1,4 +1,4 @@
-import { CardContainer } from "../components/CardContainer/CardContainer";
+import ProductCard from "../components/ProductCard/ProductCard";
 import { Categories } from "../types/categories";
 import type { ProductDetails } from "../types/productDetails";
 
@@ -12,10 +12,20 @@ const Home = () => {
     price: 15.99,
     category: Categories.BestSellers,
   };
+
+  const product2: ProductDetails = {
+    imageUrl: "../assets/react.svg",
+    productId: "1",
+    productName: "Hello",
+    author: "Me",
+    description: "description",
+    price: 15.99,
+    category: Categories.BestSellers,
+  };
   return (
     <>
-        <CardContainer products={[product, product, product, product, product, product,
-             product, product, product, product, product, product]} />
+      <ProductCard product={product} />
+      <ProductCard product={product2} />
     </>
   );
 };

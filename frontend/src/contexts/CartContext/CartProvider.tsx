@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import type { ProductDetails } from "../types/productDetails";
+import type { ProductDetails } from "../../types/productDetails";
 import { CartContext } from "./CartContext";
 
 export const CartProvider = ({ children }: {children: ReactNode }) => {

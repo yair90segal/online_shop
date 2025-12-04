@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ProductDetails } from "../types/productDetails";
+import type { ProductDetails } from "../../types/productDetails";
 
 interface CartContextValue {
     cartItems: ProductDetails[];

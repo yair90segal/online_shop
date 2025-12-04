@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useProducts } from "../hooks/useProduct";
 import ProductCard from "../components/ProductCard/ProductCard";
 import type { ProductDetails } from "../types/productDetails";
 
