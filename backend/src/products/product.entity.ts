@@ -22,7 +22,14 @@ export class ProductEntity {
   })
   genre: Genre;
 
-  @Column()
+  @Column('numeric', {
+    precision: 10,
+    scale: 2,
+    transformer: {
+      to: (value: number) => value, // store as is (pg driver will convert)
+      from: (value: string) => parseFloat(value), // DB -> JS: numeric comes as string
+    },
+  })
   price: number;
 
   @Column()
