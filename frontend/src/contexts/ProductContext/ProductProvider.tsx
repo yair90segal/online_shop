@@ -40,7 +40,7 @@ export const ProductProvider: FC<{
   const removeProduct = (product: ProductDetails) => {
     setProducts(
       products.filter(
-        (item: ProductDetails) => item.productId !== product.productId
+        (item: ProductDetails) => item.id !== product.id
       )
     );
   };

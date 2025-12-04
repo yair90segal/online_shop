@@ -1,11 +1,11 @@
-import type { Categories } from "./categories";
+import type { Genres } from "./genres";
 
 export interface ProductDetails {
-  imageUrl: string;
-  productId: string;
+  cloudinaryUrl: string;
+  id: string;
   productName: string;
   author: string;
-  category: Categories;
+  genre: Genres;
   description: string;
   price: number;
 }

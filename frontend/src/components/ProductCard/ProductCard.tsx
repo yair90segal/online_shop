@@ -9,15 +9,34 @@ import { Box } from "@mui/material";
 import type { ProductDetails } from "../../types/productDetails";
 
 interface ProductCardProps {
-  product: ProductDetails
+  product: ProductDetails;
 }
 
-const ProductCard: FC<ProductCardProps> = ({
-  product
-}) => {
+const ProductCard: FC<ProductCardProps> = ({ product }) => {
+  console.log(product);
+  console.log(product.cloudinaryUrl);
+  console.log(product.id);
+  console.log(product.genre);
   return (
-    <Card id={product.productId} sx={{ maxWidth: 345 }}>
-      <CardMedia sx={{ height: 140 }} image={product.imageUrl} title="green iguana" />
+    <Card
+      id={product.id}
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: 450,
+      }}
+    >
+      <CardMedia
+        component="img"
+        sx={{
+          height: 300,
+          objectFit: "contain",
+          bgcolor: "white",
+        }}
+        image={product.cloudinaryUrl}
+        alt={product.productName}
+      />
       <CardContent>
         <Typography gutterBottom variant="h3" component="div">
           {product.productName}
@@ -26,13 +45,26 @@ const ProductCard: FC<ProductCardProps> = ({
           {product.author}
         </Typography>
         <Typography gutterBottom variant="h6" component="div">
-          {product.category}
+          {product.genre}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+        <Typography
+          variant="body2"
+          sx={{
+            color: "text.secondary",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 3,
+            overflow: "hidden",
+          }}
+        >
           {product.description}
         </Typography>
       </CardContent>
-      <CardActions>
+      <div className="mt-auto"></div>
+      <CardActions sx={{
+        display: "flex",
+        alignItems: "center",
+      }}>
         <Box
           component="div"
           sx={{
@@ -51,9 +83,11 @@ const ProductCard: FC<ProductCardProps> = ({
             lineHeight: 1.75,
           }}
         >
-          {product.price}
+          ${product.price}
         </Box>
-        <Button size="small" variant="contained">Add to Cart</Button>
+        <Button size="small" variant="contained">
+          Add to Cart
+        </Button>
       </CardActions>
     </Card>
   );

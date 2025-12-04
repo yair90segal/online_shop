@@ -8,7 +8,7 @@ const SearchResults = () => {
   return (
     <div>
       {filteredProducts.map((product: ProductDetails) => (
-        <ProductCard key={product.productId} product={product} />
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

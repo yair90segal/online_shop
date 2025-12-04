@@ -12,7 +12,7 @@ export const CartProvider = ({ children }: {children: ReactNode }) => {
     }
 
     const removeItem = (item: ProductDetails) => {
-        setCartItems(cartItems.filter((product) => product.productId !== item.productId));
+        setCartItems(cartItems.filter((product) => product.id !== item.id));
     }
 
     return (

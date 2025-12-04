@@ -23,7 +23,7 @@ const Login = () => {
         <>
           <h2>Login</h2>
     
-          <form className="App" onSubmit={handleSubmit(onSubmit)}>
+          <form className="d-flex flex-column mx-auto" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
               {...register("name", { required: true })}
