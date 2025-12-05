@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductEntity } from './product.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CreateProductDto } from './dto/createProductDto';
 import { UploadApiErrorResponse, UploadApiResponse } from 'cloudinary';
@@ -16,6 +16,12 @@ export class ProductService {
 
   async getAllProducts() {
     return await this.productRepository.find();
+  }
+
+  async getProductsByIds(ids: string[]) {
+    return await this.productRepository.find({
+      where: { id: In(ids) },
+    });
   }
 
   async createProduct(dto: CreateProductDto, file: Express.Multer.File) {

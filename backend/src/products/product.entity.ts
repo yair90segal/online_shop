@@ -1,6 +1,6 @@
 import { Genre } from 'src/enums/genre.enum';
-import { OrderEntity } from 'src/orders/order.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderItemEntity } from 'src/orders/orderItem.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'products' })
 export class ProductEntity {
@@ -35,6 +35,6 @@ export class ProductEntity {
   @Column()
   cloudinaryUrl: string;
 
-  @ManyToMany(() => OrderEntity, (order) => order.products)
-  orders: OrderEntity[];
+  @OneToMany(() => OrderItemEntity, (item) => item.product)
+  orderItems: OrderItemEntity[];
 }

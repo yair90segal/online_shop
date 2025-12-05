@@ -1,14 +1,13 @@
 import { OrderStatus } from 'src/enums/orderStatus.enum';
-import { ProductEntity } from 'src/products/product.entity';
 import { UserEntity } from 'src/user/user.entity';
 import {
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
+  OneToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { OrderItemEntity } from './orderItem.entity';
 
 @Entity('orders')
 export class OrderEntity {
@@ -28,19 +27,8 @@ export class OrderEntity {
   @Column()
   totalPrice: number;
 
-  @ManyToMany(() => ProductEntity, (product) => product.orders)
-  @JoinTable({
-    name: 'order_product',
-    joinColumn: {
-      name: 'order_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'product_id',
-      referencedColumnName: 'id',
-    },
-  })
-  products: ProductEntity[];
+  @OneToMany(() => OrderItemEntity, (item) => item.order, { cascade: true })
+  items: OrderItemEntity[];
 
   @ManyToOne(() => UserEntity, (user) => user.orders)
   user: UserEntity;
