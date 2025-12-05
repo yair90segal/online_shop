@@ -1,3 +1,4 @@
+import { OrderStatus } from 'src/enums/orderStatus.enum';
 import { ProductEntity } from 'src/products/product.entity';
 import { UserEntity } from 'src/user/user.entity';
 import {
@@ -16,6 +17,13 @@ export class OrderEntity {
 
   @Column()
   orderDate: Date;
+
+  @Column({
+    type: 'enum',
+    enum: OrderStatus,
+    default: OrderStatus.PENDING,
+  })
+  status: OrderStatus;
 
   @Column()
   totalPrice: number;

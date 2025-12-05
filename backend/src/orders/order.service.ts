@@ -14,6 +14,10 @@ export class OrderService {
     return await this.orderRepository.find();
   }
 
+  async getOrdersByUserId(userId: number) {
+    return await this.orderRepository.find({ where: { user: { id: userId } } });
+  }
+
   // eslint-disable-next-line @typescript-eslint/require-await
   async placeOrder(userId: number, productIds: string[]) {
     console.log(userId);
