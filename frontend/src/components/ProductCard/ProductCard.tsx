@@ -7,16 +7,15 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import type { ProductDetails } from "../../types/productDetails";
+import { useCart } from "../../contexts/CartContext/useCart";
 
 interface ProductCardProps {
   product: ProductDetails;
 }
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
-  console.log(product);
-  console.log(product.cloudinaryUrl);
-  console.log(product.id);
-  console.log(product.genre);
+  const { addItem } = useCart();
+
   return (
     <Card
       id={product.id}
@@ -85,7 +84,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         >
           ${product.price}
         </Box>
-        <Button size="small" variant="contained">
+        <Button size="small" variant="contained" onClick={() => addItem(product)}>
           Add to Cart
         </Button>
       </CardActions>

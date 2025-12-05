@@ -1,8 +1,10 @@
 import { createContext } from "react";
 import type { ProductDetails } from "../../types/productDetails";
+import type { cartItemType } from "../../types/cartItemType";
 
 interface CartContextValue {
-    cartItems: ProductDetails[];
+    cartItems: cartItemType[];
+    setCartItems: React.Dispatch<React.SetStateAction<cartItemType[]>>;
     addItem: (item: ProductDetails) => void;
     removeItem: (item: ProductDetails) => void;
 }
