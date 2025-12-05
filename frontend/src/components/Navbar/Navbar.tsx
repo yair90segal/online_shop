@@ -84,9 +84,20 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "block" },
+              }}
             >
-              The Book Buffet
+              <span
+                onClick={() => {
+                  setSearch("");
+                  navigate("/");
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                The Book Buffet
+              </span>
             </Typography>
             <Search>
               <SearchIconWrapper>
