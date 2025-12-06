@@ -24,7 +24,12 @@ export class OrderEntity {
   })
   status: OrderStatus;
 
-  @Column()
+  @Column('numeric', {
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
+  })
   totalPrice: number;
 
   @OneToMany(() => OrderItemEntity, (item) => item.order, { cascade: true })

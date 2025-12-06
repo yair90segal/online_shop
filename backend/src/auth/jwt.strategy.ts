@@ -9,8 +9,11 @@ export interface JwtPayload {
 }
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(private configService: ConfigService) {
+    const secret = configService.get<string>('JWT_SECRET');
+    console.log('### JWT STRATEGY SECRET:', secret);
+
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: configService.get<string>('JWT_SECRET')!,
@@ -19,6 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   validate(payload: JwtPayload) {
-    return { userId: payload.sub, role: payload.role };
+    console.log('### JWT PAYLOAD:', payload);
+    return { sub: payload.sub, role: payload.role };
   }
 }

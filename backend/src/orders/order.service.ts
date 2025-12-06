@@ -101,7 +101,7 @@ export class OrderService {
     const order = new OrderEntity();
     order.user = user;
     order.orderDate = new Date();
-    order.totalPrice = totalPrice;
+    order.totalPrice = Number(totalPrice);
     order.status = OrderStatus.PENDING;
     order.items = items.map((item) => {
       const orderItem = new OrderItemEntity();
