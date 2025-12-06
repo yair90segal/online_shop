@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { OrderService } from './order.service';
+import { UserRole } from 'src/enums/role.enum';
 
 @Controller('orders')
 export class OrderController {
@@ -10,11 +11,12 @@ export class OrderController {
     return await this.orderService.getOrdersByUserId(userId);
   }
 
-  @Post(':userId')
+  @Post()
   async createOrder(
-    @Param('userId') userId: number,
     @Body('items') items: { productId: string; quantity: number }[],
+    @Req() req: Request & { user: { sub: number; role: UserRole } },
   ) {
+    const userId = req.user.sub;
     return await this.orderService.createOrder(userId, items);
   }
 }
