@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import SearchResults from "./pages/SearchResults";
 import PublicRoute from "./components/Routes/PublicRoute";
 import PrivateRoute from "./components/Routes/PrivateRoute";
+import AdminLayout from "./layouts/AdminLayout";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
           { path: "/account", element: <Account /> },
           { path: "/cart", element: <Cart /> },
           { path: "/search", element: <SearchResults /> },
+          {
+            path: "/admin",
+            element: <AdminLayout />,
+            children: [
+              { path: "orders", element: <></> },
+              { path: "products", element: <></> },
+            ],
+          },
         ],
       },
     ],
