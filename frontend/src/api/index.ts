@@ -64,4 +64,14 @@ export default {
         }),
     };
   },
+  admin() {
+    return {
+      getAllOrders: (): Promise<AxiosResponse<orderType[]>> =>
+        axiosInstance.get("admin/orders", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }),
+    };
+  },
 };
