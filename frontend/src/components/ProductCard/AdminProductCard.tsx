@@ -6,14 +6,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
-import type { ProductDetails } from "../../types/productDetails";
 import { useCart } from "../../contexts/CartContext/useCart";
+import type { ProductCardProps } from "./ProductCard";
 
-export interface ProductCardProps {
-  product: ProductDetails;
-}
-
-const ProductCard: FC<ProductCardProps> = ({ product }) => {
+const AdminProductCard: FC<ProductCardProps> = ({ product }) => {
   const { addItem } = useCart();
 
   return (
@@ -60,10 +56,12 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         </Typography>
       </CardContent>
       <div className="mt-auto"></div>
-      <CardActions sx={{
-        display: "flex",
-        alignItems: "center",
-      }}>
+      <CardActions
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <Box
           component="div"
           sx={{
@@ -83,12 +81,21 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         >
           ${product.price}
         </Box>
-        <Button size="small" variant="contained" onClick={() => addItem(product)}>
-          Add to Cart
+        {
+          //TODO: Change from add to cart to delete Item functionality
+          //TODO: Change product card component to accept onclick handler - 
+          // and thus remove the need for a different admin product card component
+        }
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => addItem(product)}
+        >
+          Delete Item
         </Button>
       </CardActions>
     </Card>
   );
 };
 
-export default ProductCard;
+export default AdminProductCard;
