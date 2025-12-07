@@ -2,13 +2,15 @@ import { useState, type FC } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import type { orderType } from "../../types/orderType";
 import { useChangeOrderStatus } from "../../hooks/useChangeOrderStatus";
+import type { OrderStatus } from "../../types/orderStatus";
 
 interface adminOrderProps {
-    order: orderType;
+  order: orderType;
 }
 
 const AdminOrder: FC<adminOrderProps> = ({ order }) => {
   const [show, setShow] = useState(false);
+  const [status, setStatus] = useState(order.status);
 
   const { changeOrderStatus } = useChangeOrderStatus();
 
@@ -19,10 +21,11 @@ const AdminOrder: FC<adminOrderProps> = ({ order }) => {
     await changeOrderStatus(orderId, newStatus);
   };
 
-  const handleStatusChange = (e: { target: { value: unknown; }; }) => {
+  const handleStatusChange = (e: { target: { value: unknown } }) => {
     const newStatus = e.target.value;
     if (typeof newStatus !== "string") return;
     onStatusChange(order.id, newStatus);
+    setStatus(newStatus as OrderStatus);
   };
 
   return (
@@ -42,7 +45,7 @@ const AdminOrder: FC<adminOrderProps> = ({ order }) => {
 
           <Form.Select
             size="sm"
-            value={order.status}
+            value={status}
             onChange={handleStatusChange}
             style={{ width: "150px" }}
           >
@@ -76,12 +79,14 @@ const AdminOrder: FC<adminOrderProps> = ({ order }) => {
                   width: "80px",
                   height: "100px",
                   objectFit: "cover",
-                  borderRadius: "6px"
+                  borderRadius: "6px",
                 }}
               />
 
               <div className="ms-3 flex-grow-1">
-                <div><strong>{item.productName}</strong></div>
+                <div>
+                  <strong>{item.productName}</strong>
+                </div>
                 <div className="text-muted">{item.author}</div>
               </div>
 
