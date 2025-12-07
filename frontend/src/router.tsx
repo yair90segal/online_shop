@@ -10,6 +10,7 @@ import SearchResults from "./pages/SearchResults";
 import PublicRoute from "./components/Routes/PublicRoute";
 import PrivateRoute from "./components/Routes/PrivateRoute";
 import AdminLayout from "./layouts/AdminLayout";
+import AdminOrders from "./pages/AdminOrders";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
             path: "/admin",
             element: <AdminLayout />,
             children: [
-              { path: "orders", element: <></> },
+              { path: "orders", element: <AdminOrders /> },
               { path: "products", element: <></> },
             ],
           },
