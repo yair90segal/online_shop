@@ -11,6 +11,7 @@ import PublicRoute from "./components/Routes/PublicRoute";
 import PrivateRoute from "./components/Routes/PrivateRoute";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminOrders from "./pages/AdminOrders";
+import AdminProducts from "./pages/AdminProducts";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
             element: <AdminLayout />,
             children: [
               { path: "orders", element: <AdminOrders /> },
-              { path: "products", element: <></> },
+              { path: "products", element: <AdminProducts /> },
             ],
           },
         ],

@@ -43,9 +43,9 @@ const AdminOrder: FC<adminOrderProps> = ({ order }) => {
             onChange={handleStatusChange}
             style={{ width: "150px" }}
           >
-            <option value="PENDING">PENDING</option>
-            <option value="COMPLETED">COMPLETED</option>
-            <option value="CANCELLED">CANCELLED</option>
+            <option value="pending">PENDING</option>
+            <option value="completed">COMPLETED</option>
+            <option value="cancelled">CANCELLED</option>
           </Form.Select>
 
           <Button size="sm" variant="primary" onClick={openModal}>
