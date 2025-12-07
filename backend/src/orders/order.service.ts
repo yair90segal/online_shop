@@ -63,6 +63,18 @@ export class OrderService {
     }));
   }
 
+  async updateOrderStatus(id: string, newStatus: string) {
+    if (!Object.values(OrderStatus).includes(newStatus as OrderStatus)) {
+      throw new BadRequestException(`Invalid order status: ${newStatus}`);
+    }
+
+    const result = await this.orderRepository.update(id, {
+      status: newStatus as OrderStatus,
+    });
+
+    return result.affected === 1;
+  }
+
   async createOrder(
     userId: number,
     items: { productId: string; quantity: number }[],
