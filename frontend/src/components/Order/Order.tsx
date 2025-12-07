@@ -14,12 +14,10 @@ const Order: FC<orderProps> = ({ order }) => {
 
   return (
     <>
-      {/* Order Row */}
       <div
         className="d-flex align-items-center justify-content-between p-3 border rounded mb-3"
         style={{ width: "100%" }}
       >
-        {/* Left section: ID + Date + Status */}
         <div className="d-flex flex-wrap align-items-center gap-4">
           <span style={{ textDecoration: "underline" }}>
             <strong>{order.id}</strong>
@@ -39,13 +37,11 @@ const Order: FC<orderProps> = ({ order }) => {
           </Button>
         </div>
 
-        {/* Right section: Total Price */}
         <div>
           <strong>Total: ${order.totalPrice.toFixed(2)}</strong>
         </div>
       </div>
 
-      {/* Modal */}
       <Modal show={show} onHide={closeModal} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Order Items</Modal.Title>

@@ -48,7 +48,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
@@ -137,6 +136,22 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
             >
               <ShoppingBag />
             </IconButton>
+            <Typography
+              variant="h5"
+              noWrap
+              component="div"
+            >
+              <span
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  sessionStorage.removeItem("token");
+                  navigate("/login");
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                LOGOUT
+              </span>
+            </Typography>
           </Toolbar>
         </AppBar>
       </Box>

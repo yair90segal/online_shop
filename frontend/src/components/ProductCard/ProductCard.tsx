@@ -78,7 +78,6 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            // force same height as the MUI button
             lineHeight: 1.75,
           }}
         >

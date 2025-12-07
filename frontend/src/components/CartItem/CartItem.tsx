@@ -18,7 +18,6 @@ const CartItem: FC<CartItemProps> = ({ product, quantity }) => {
   return (
     <div className="d-flex border rounded p-3 align-items-stretch">
 
-      {/* IMAGE */}
       <img
         src={product.cloudinaryUrl}
         alt={product.productName}
@@ -31,7 +30,6 @@ const CartItem: FC<CartItemProps> = ({ product, quantity }) => {
         }}
       />
 
-      {/* MIDDLE SECTION */}
       <div className="flex-grow-1 d-flex flex-column justify-content-between">
         <div>
           <div className="fw-bold fs-5">{product.productName}</div>
@@ -43,17 +41,14 @@ const CartItem: FC<CartItemProps> = ({ product, quantity }) => {
         </div>
       </div>
 
-      {/* RIGHT CONTROLS */}
       <div className="d-flex flex-column justify-content-between align-items-end">
 
-        {/* DELETE ICON */}
         <Trash
           size={22}
           style={{ cursor: "pointer" }}
           onClick={() => onRemove(product.id)}
         />
 
-        {/* QUANTITY BAR */}
         <div className="d-flex align-items-center border rounded px-2 py-1 mt-3">
           <button
             className="btn btn-sm btn-light"
