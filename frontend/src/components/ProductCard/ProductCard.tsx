@@ -7,15 +7,25 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import type { ProductDetails } from "../../types/productDetails";
-import { useCart } from "../../contexts/CartContext/useCart";
 
 export interface ProductCardProps {
   product: ProductDetails;
+  variant?: "shop" | "admin"
+  btnLabel: string;
+  onAddToCart?: (item: ProductDetails) => void;
+  onDeleteItem?: () => void;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product }) => {
-  const { addItem } = useCart();
-
+const ProductCard: FC<ProductCardProps> = ({ product, variant="shop", btnLabel, onAddToCart, onDeleteItem}) => {
+  const handleClick = () => {
+    if (variant === "shop" && onAddToCart) {
+      onAddToCart(product);
+    }
+    if (variant === "admin" && onDeleteItem) {
+      onDeleteItem();
+    }
+  };
+  
   return (
     <Card
       id={product.id}
@@ -60,10 +70,12 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         </Typography>
       </CardContent>
       <div className="mt-auto"></div>
-      <CardActions sx={{
-        display: "flex",
-        alignItems: "center",
-      }}>
+      <CardActions
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <Box
           component="div"
           sx={{
@@ -83,8 +95,12 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         >
           ${product.price}
         </Box>
-        <Button size="small" variant="contained" onClick={() => addItem(product)}>
-          Add to Cart
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => handleClick()}
+        >
+          {btnLabel}
         </Button>
       </CardActions>
     </Card>
