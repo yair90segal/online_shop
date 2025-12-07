@@ -1,6 +1,7 @@
 import { useState, type FC } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import type { orderType } from "../../types/orderType";
+import { useChangeOrderStatus } from "../../hooks/useChangeOrderStatus";
 
 interface adminOrderProps {
     order: orderType;
@@ -9,16 +10,18 @@ interface adminOrderProps {
 const AdminOrder: FC<adminOrderProps> = ({ order }) => {
   const [show, setShow] = useState(false);
 
+  const { changeOrderStatus } = useChangeOrderStatus();
+
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
 
-  const onStatusChange = (orderId: string, newStatus: unknown) => {
-    console.log(orderId);
-    console.log(newStatus);
+  const onStatusChange = async (orderId: string, newStatus: string) => {
+    await changeOrderStatus(orderId, newStatus);
   };
 
   const handleStatusChange = (e: { target: { value: unknown; }; }) => {
     const newStatus = e.target.value;
+    if (typeof newStatus !== "string") return;
     onStatusChange(order.id, newStatus);
   };
 
