@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ProductModule } from './products/product.module';
 import { OrderModule } from './orders/order.module';
+import { AdminModule } from './admin/admin.module';
 
 // Don't forget to initialize .env file
 
@@ -35,6 +36,7 @@ import { OrderModule } from './orders/order.module';
     CloudinaryModule,
     ProductModule,
     OrderModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

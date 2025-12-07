@@ -20,13 +20,14 @@ export class OrderService {
     const orders = await this.orderRepository.find({
       relations: {
         items: { product: true },
-        user: false,
+        user: true,
       },
       order: { orderDate: 'DESC' },
     });
 
     return orders.map((order) => ({
       id: order.id,
+      userId: order.user.id,
       orderDate: order.orderDate,
       status: order.status,
       totalPrice: order.totalPrice,
