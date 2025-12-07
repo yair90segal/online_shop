@@ -76,11 +76,15 @@ export default {
         orderId: string,
         newStatus: string
       ): Promise<AxiosResponse<boolean>> =>
-        axiosInstance.patch(`admin/orders/${orderId}/${newStatus}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }),
+        axiosInstance.patch(
+          `admin/orders/${orderId}/${newStatus}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        ),
     };
   },
 };
