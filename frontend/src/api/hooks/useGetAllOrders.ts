@@ -12,7 +12,8 @@ export const useGetAllOrders = () => {
         const orders = (await api.admin().getAllOrders()).data;
 
         setAllOrders(orders);
-      } catch {
+      } catch (error: unknown) {
+        console.log(error);
         Swal.fire(
           "Oops!",
           "Looks like there is a problem fetching the orders, please try again later",

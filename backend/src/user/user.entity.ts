@@ -14,7 +14,6 @@ export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // Loval auth fields:
   @Column({ unique: true, nullable: true })
   username: string;
 

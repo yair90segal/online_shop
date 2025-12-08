@@ -14,13 +14,14 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Roles } from 'src/decorators/roles.decorator';
+import { UserRole } from 'src/enums/role.enum';
 import { OrderService } from 'src/orders/order.service';
 import { CreateProductDto } from 'src/products/dto/createProductDto';
 import { ProductService } from 'src/products/product.service';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('admin')
-@Roles('admin')
+@Roles(UserRole.Admin)
 export class AdminController {
   constructor(
     private readonly orderService: OrderService,
