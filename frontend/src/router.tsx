@@ -12,6 +12,7 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminOrders from "./pages/AdminOrders";
 import AdminProducts from "./pages/AdminProducts";
+import AdminRoute from "./components/Routes/AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -36,12 +37,19 @@ const router = createBrowserRouter([
           { path: "/account", element: <Account /> },
           { path: "/cart", element: <Cart /> },
           { path: "/search", element: <SearchResults /> },
+
           {
             path: "/admin",
-            element: <AdminLayout />,
+            element: <AdminRoute />,
             children: [
-              { path: "orders", element: <AdminOrders /> },
-              { path: "products", element: <AdminProducts /> },
+              {
+                path: "",
+                element: <AdminLayout />,
+                children: [
+                  { path: "orders", element: <AdminOrders /> },
+                  { path: "products", element: <AdminProducts /> },
+                ],
+              },
             ],
           },
         ],
