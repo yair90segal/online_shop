@@ -12,12 +12,15 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/decorators/roles.decorator';
 import { OrderService } from 'src/orders/order.service';
 import { CreateProductDto } from 'src/products/dto/createProductDto';
 import { ProductService } from 'src/products/product.service';
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('admin')
+@Roles('admin')
 export class AdminController {
   constructor(
     private readonly orderService: OrderService,
