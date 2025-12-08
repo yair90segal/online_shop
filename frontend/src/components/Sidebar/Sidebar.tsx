@@ -1,17 +1,34 @@
 import { NavLink } from "react-router-dom";
+import { SIDEBAR_WIDTH } from "../../layouts/AdminLayout";
 
 const Sidebar = () => {
   const sidebarItems = [{ path: "/admin/orders" }];
   console.log(sidebarItems);
 
   return (
-    <aside>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        <li>
-          <NavLink to="products">Products</NavLink>
+    <aside
+      className="bg-light border-end"
+      style={{
+        width: SIDEBAR_WIDTH,
+        minHeight: "100vh",
+        left: 0,
+        top: 64,
+        padding: "1rem",
+        position: "fixed",
+      }}
+    >
+      <h5 className="text-center mb-4">Admin Panel</h5>
+
+      <ul className="nav nav-pills flex-column">
+        <li className="nav-item">
+          <NavLink className="nav-link" to="products">
+            Products
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="orders">Orders</NavLink>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="orders">
+            Orders
+          </NavLink>
         </li>
       </ul>
     </aside>

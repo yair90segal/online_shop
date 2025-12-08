@@ -13,17 +13,18 @@ const AdminProducts = () => {
 
   return (
     <>
-      {
-        // TODO: add button for new product
-      }
       <div className="container mt-4">
-        <Button
-          size="small"
-          variant="contained"
-          onClick={() => setShowModal(true)}
-        >
-          New Product +
-        </Button>
+        <div className="row mb-4">
+          <div className="col">
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => setShowModal(true)}
+            >
+              New Product +
+            </Button>
+          </div>
+        </div>
 
         <div className="row g-4">
           {products.map((p) => (
@@ -32,9 +33,9 @@ const AdminProducts = () => {
                 product={p}
                 variant="admin"
                 onDeleteItem={() => {
-                    const res = deleteProduct(p.id);
+                  const res = deleteProduct(p.id);
 
-                    if (res !== undefined) removeProduct(p);
+                  if (res !== undefined) removeProduct(p);
                 }}
                 btnLabel={"Delete Item"}
               />

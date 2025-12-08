@@ -118,6 +118,17 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
                 }}
               />
             </Search>
+            <Typography variant="h5" noWrap component="div">
+              <span
+                onClick={() => {
+                  navigate("/admin");
+                }}
+                className="mx-3"
+                style={{ cursor: "pointer" }}
+              >
+                Admin Panel
+              </span>
+            </Typography>
             <IconButton
               component={Link}
               to="/account"
@@ -136,11 +147,7 @@ export const Navbar: FC<NavbarProps> = ({ isAdmin, search, setSearch }) => {
             >
               <ShoppingBag />
             </IconButton>
-            <Typography
-              variant="h5"
-              noWrap
-              component="div"
-            >
+            <Typography variant="h5" noWrap component="div">
               <span
                 onClick={() => {
                   localStorage.removeItem("token");
