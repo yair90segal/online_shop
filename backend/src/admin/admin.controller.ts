@@ -1,11 +1,28 @@
-import { Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { OrderService } from 'src/orders/order.service';
+import { CreateProductDto } from 'src/products/dto/createProductDto';
+import { ProductService } from 'src/products/product.service';
 
 @UseGuards(JwtAuthGuard)
 @Controller('admin')
 export class AdminController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(
+    private readonly orderService: OrderService,
+    private readonly productService: ProductService,
+  ) {}
 
   @Get('orders')
   async getAllOrders() {
@@ -18,5 +35,20 @@ export class AdminController {
     @Param('newStatus') newStatus: string,
   ) {
     return await this.orderService.updateOrderStatus(orderId, newStatus);
+  }
+
+  @Post('products')
+  @UseInterceptors(FileInterceptor('image'))
+  async createProduct(
+    @Body() dto: CreateProductDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    console.log('in create product controller method');
+    return await this.productService.createProduct(dto, file);
+  }
+
+  @Delete('products/:id')
+  async deleteProduct(@Param('id') id: string) {
+    return await this.productService.removeProduct(id);
   }
 }

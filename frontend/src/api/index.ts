@@ -85,6 +85,25 @@ export default {
             },
           }
         ),
+      createProduct: (
+        formData: FormData
+      ): Promise<AxiosResponse<ProductDetails>> =>
+        axiosInstance.post("admin/products", formData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }),
+      deleteProduct: (
+        productId: string
+      ): Promise<AxiosResponse<{ message: string }>> =>
+        axiosInstance.delete(
+          `admin/products/${productId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        ),
     };
   },
 };

@@ -32,10 +32,8 @@ export const ProductProvider: FC<{
   }, []);
 
   const addProduct = (product: ProductDetails) => {
-    const allProducts: ProductDetails[] = products;
-    allProducts.push(product);
-    setProducts(allProducts);
-  };
+  setProducts(prev => [...prev, product]);
+};
 
   const removeProduct = (product: ProductDetails) => {
     setProducts(
